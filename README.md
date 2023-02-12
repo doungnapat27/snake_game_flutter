@@ -1,6 +1,6 @@
 # flutter_snake_game
 
-A new Flutter application.
+🐍2D snake game create by flutter
 
 ## Getting Started
 
