@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'game.dart';
+import 'package:flutter_snake_game/Screens/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,13 +9,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Snake',
       debugShowCheckedModeBanner: false,
+      title: 'Flutter Snake',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: GamePage(),
+      home: HomePage(),
     );
   }
 }
