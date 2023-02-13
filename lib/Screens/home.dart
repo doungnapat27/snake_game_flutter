@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_snake_game/Screens/signUp.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -36,7 +37,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                 height: 30.0,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpPage()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                     primary: Color(0xFFD9D9D9),
                     onPrimary: Colors.black,
