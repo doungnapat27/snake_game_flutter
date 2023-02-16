@@ -19,9 +19,12 @@ class _SignUpPageState extends State<SignUpPage>{
         children: <Widget>[
           Positioned(
             top: screenHeight*0.05,
-            child : Icon(
-              Icons.arrow_back,
-              size: 46,
+            child : IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back,size: 46,
+              ),
               color: Colors.white,
             )
           ),
@@ -93,7 +96,7 @@ class _SignUpPageState extends State<SignUpPage>{
                         ),
                         filled: true,
                         fillColor: Color(0xFFD9D9D9),
-                        hintText: 'Enter your email',
+                        hintText: 'example@gmail.com',
                       ),
                     ),
                   ),
