@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_game/Screens/homeLogged.dart';
+import 'package:flutter_snake_game/Screens/loginPage.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class _SignUpPageState extends State<SignUpPage>{
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFF006C6C),
       body: Stack(
         children: <Widget>[
@@ -152,7 +154,12 @@ class _SignUpPageState extends State<SignUpPage>{
                     margin: EdgeInsets.only(top: 20),
                     child: new InkWell(
                       //wait to insert the login page
-                      onTap: (){},
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
                         child: new Text('Already have an account? Sign In',
                             style: TextStyle(
                               fontSize: 18,
@@ -200,58 +207,60 @@ class NameSnakie extends StatelessWidget {
             ),
             Align(
               alignment: AlignmentDirectional.center,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(top: screenHeight*0.25),
-                    child : Image(image: AssetImage(
-                  'assets/images/snakie_circle.png'),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: screenHeight*0.05),
-                    child: Text("What's your snakie name?",
-                      style: TextStyle(
-                        fontFamily: 'NanumPenScript',
-                        fontSize: 24,
+              child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(top: screenHeight*0.25),
+                        child : Image(image: AssetImage(
+                            'assets/images/snakie_circle.png'),
+                        ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: screenWidth*0.6,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'eg. Snakiekie',
+                      Container(
+                        margin: EdgeInsets.only(top: screenHeight*0.05),
+                        child: Text("What's your snakie name?",
+                          style: TextStyle(
+                            fontFamily: 'NanumPenScript',
+                            fontSize: 24,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(bottom: screenHeight*0.05),
-                  ),
-                  TextButton(
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeLogged()),
-                      );
-                    },
-                    style: TextButton.styleFrom(
-                        padding: EdgeInsets.only(left: 60, right:60),
-                        primary: Colors.white,
-                        backgroundColor: Color(0xFF006C6C),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(46))),
-                        textStyle: const TextStyle(
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'NanumPenScript',
-                          fontStyle: FontStyle.normal,
-                        )
-                    ),
-                    child: Text('Next'),
-                  ),
-                ],
-              )
-            )
+                      SizedBox(
+                        width: screenWidth*0.6,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'eg. Snakiekie',
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: screenHeight*0.05),
+                      ),
+                      TextButton(
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeLogged()),
+                          );
+                        },
+                        style: TextButton.styleFrom(
+                            padding: EdgeInsets.only(left: 60, right:60),
+                            primary: Colors.white,
+                            backgroundColor: Color(0xFF006C6C),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(46))),
+                            textStyle: const TextStyle(
+                              fontSize: 48,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'NanumPenScript',
+                              fontStyle: FontStyle.normal,
+                            )
+                        ),
+                        child: Text('Next'),
+                      ),
+                    ],
+                  )
+              ),
+            ),
           ],
         )
     );

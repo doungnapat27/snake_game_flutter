@@ -54,6 +54,7 @@ flutter:
     - assets/images/snakie_circle.png
     - assets/images/gamepad_ex.png
     - assets/images/snake_and_food_ex.png
+    - assets/images/snakie_login.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
