@@ -284,7 +284,7 @@ class _GamePageState extends State<GamePage> {
       left: lowerBoundX.toDouble(),
       child: Container(
         width: (upperBoundX - lowerBoundX + step).toDouble(),
-        height: (upperBoundY - lowerBoundY + step).toDouble(),
+        height: ((upperBoundY - lowerBoundY + step)).toDouble(),
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.black.withOpacity(0.2),

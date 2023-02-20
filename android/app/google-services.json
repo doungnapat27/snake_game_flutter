@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "48511204123",
+    "project_id": "myloginsnake",
+    "storage_bucket": "myloginsnake.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48511204123:android:81795357d67e3c593631be",
+        "android_client_info": {
+          "package_name": "com.example.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48511204123-oopmr2mi6poh8nebpmpjeeq217dlsqlm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIVEZy5rvEkXYi8_w_X0zBmTdabcj5MzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48511204123-oopmr2mi6poh8nebpmpjeeq217dlsqlm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
