@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_snake_game/Screens/homeLogged.dart';
 import 'package:flutter_snake_game/direction_type.dart';
 
 import 'control_panel.dart';
@@ -106,32 +107,75 @@ class _GamePageState extends State<GamePage> {
       context: context,
       builder: (ctx) {
         return AlertDialog(
-          backgroundColor: Colors.red,
-          shape: RoundedRectangleBorder(
-              side: BorderSide(
-                color: Colors.black,
-                width: 3.0,
-              // ), borderRadius: BorderRadius.all(Radius.circular(10.0)
-             )),
+          backgroundColor: Colors.transparent,
+          // shape: RoundedRectangleBorder(
+          //     side: BorderSide(
+          //       color: Colors.black,
+          //       width: 3.0,
+          //     // ), borderRadius: BorderRadius.all(Radius.circular(10.0)
+          //    )),
           title: Text(
             "Game Over",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white,
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
           ),
           content: Text(
-            "Your game is over but you played well. Your score is " + score.toString() + ".",
-            style: TextStyle(color: Colors.white),
+            "${score.toString()}",
+            style: TextStyle(color: Colors.white,
+              fontSize: 24,
+            ),
+            textAlign: TextAlign.center,
           ),
           actions: [
-            TextButton(
-              onPressed: () async {
-                Navigator.of(context).pop();
-                restart();
-              },
-              child: Text(
-                "Restart",
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  TextButton(
+                    child: Column(
+                      children: <Widget>[
+                        Icon(Icons.home,
+                          color: Colors.white,
+                          size: 50,
+                        ),
+                        Text('Home',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+        ),
+                    onPressed: () async {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeLogged()),
+                      );
+                    },
+                  ),
+                  TextButton(
+                    child: Column(
+                      children: <Widget>[
+                        Icon(Icons.refresh,
+                          color: Colors.white,
+                          size: 50,
+                        ),
+                        Text('Restart',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+
+        ),
+                    onPressed: () async {
+                      Navigator.of(context).pop();
+                      restart();
+                    },
+                  ),
+                ],
               ),
-            ),
           ],
         );
       },
@@ -170,7 +214,7 @@ class _GamePageState extends State<GamePage> {
     }
     if (foodPosition == positions[0]) {
       length++;
-      speed = speed + 0.25;
+      speed = speed + 0.05;
       score = score + 5;
       changeSpeed();
 
