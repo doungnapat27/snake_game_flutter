@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_game/Screens/howToPlay.dart';
+import 'package:flutter_snake_game/Screens/setting.dart';
 import 'package:flutter_snake_game/Screens/loginPage.dart';
 import 'package:flutter_snake_game/Screens/weather_test.dart';
 import 'package:flutter_snake_game/game.dart';
@@ -104,7 +105,8 @@ class HomeLogged extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => WeatherTest()),
+                            //MaterialPageRoute(builder: (context) => WeatherTest()),
+                            MaterialPageRoute(builder: (context) => setting()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
