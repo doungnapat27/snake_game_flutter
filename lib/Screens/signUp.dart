@@ -8,7 +8,7 @@ import 'package:flutter_snake_game/Screens/loginPage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-import '../model/profile.dart';
+import '../models/profile.dart';
 
 class SignUpPage extends StatefulWidget {
   @override

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_snake_game/Screens/homeLogged.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-import '../model/profile.dart';
+import '../models/profile.dart';
 
 class LoginPage extends StatefulWidget {
   @override

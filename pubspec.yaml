@@ -28,6 +28,10 @@ dependencies:
   firebase_auth: ^4.2.8
   fluttertoast: ^8.2.0
   cherry_toast: ^1.0.9
+  flutter_dotenv: ^5.0.2
+  dio: ^5.0.1
+  location: ^4.2.0
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -59,6 +63,7 @@ flutter:
     - assets/images/gamepad_ex.png
     - assets/images/snake_and_food_ex.png
     - assets/images/snakie_login.png
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
