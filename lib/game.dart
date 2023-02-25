@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_game/Screens/homeLogged.dart';
+import 'package:flutter_snake_game/Screens/setting.dart';
 import 'package:flutter_snake_game/direction_type.dart';
 
 import 'control_panel.dart';
@@ -264,7 +265,7 @@ class _GamePageState extends State<GamePage> {
            */
           size: step,
           //can change color here
-          color: Colors.lightGreen,
+          color: setting.pieceColor,
         ),
       );
     }
