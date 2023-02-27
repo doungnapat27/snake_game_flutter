@@ -64,6 +64,9 @@ flutter:
     - assets/images/gamepad_ex.png
     - assets/images/snake_and_food_ex.png
     - assets/images/snakie_login.png
+    - assets/images/snakeType_cheese.png
+    - assets/images/snakeType_normal.png
+    - assets/images/snakeType_direction.png
     - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
