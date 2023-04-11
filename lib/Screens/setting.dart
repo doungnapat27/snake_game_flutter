@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_snake_game/Screens/homeLogged.dart';
+import 'package:flutter_snake_game/Screens/weather_test.dart';
+import 'package:flutter_snake_game/models/weather_data.dart';
+
+
 class setting extends StatefulWidget {
-  static Color pieceColor = Colors.blue;
-  static String pieceType;
+  static Color pieceColor = Color(0xFF006C6C);
+  static String pieceType = 'normal';
   @override
   _settingPageState createState() => _settingPageState();
 
@@ -15,8 +19,7 @@ class _settingPageState extends State<setting> {
   @override
   double screenWidth;
   double screenHeight;
-  Color _buttonColor = Colors.blue;
-
+  Color _buttonColor = Color(0xFF006C6C);
   void changeColor(Color color) {
     setState(() => setting.pieceColor = color);
   }
@@ -52,6 +55,69 @@ class _settingPageState extends State<setting> {
               child: Text('OK'),
             ),
           ],
+        );
+      },
+    );
+  }
+
+  void _showType() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Choose the snake type',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF006C6C),
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                GestureDetector(
+                  child:
+                  Image.asset(
+                      'assets/images/snakeType_normal.png',
+                    width: 60,
+                    height: 60,
+                  ),
+                  onTap: () {
+                    changeType('normal');
+                    Navigator.of(context).pop();
+                  },
+                ),
+
+                GestureDetector(
+                  child:
+                  Image.asset(
+                    'assets/images/snakeType_cheese.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                  onTap: () {
+                    changeType('cheese');
+                    Navigator.of(context).pop();
+                  },
+                ),
+
+                GestureDetector(
+                  child:
+                  Image.asset(
+                    'assets/images/snakeType_direction.png',
+                    width: 50,
+                    height: 50,
+                  ),
+                  onTap: () {
+                    changeType('direction');
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          ),
         );
       },
     );
@@ -100,7 +166,7 @@ class _settingPageState extends State<setting> {
                     ),
                   ),
                   SizedBox(height:
-                  screenWidth*0.05),
+                  screenWidth*0.1),
                   Container(
                     alignment: Alignment.topLeft,
                     child: Text('Snake',
@@ -112,7 +178,7 @@ class _settingPageState extends State<setting> {
                     ),
                   ),
                   SizedBox(height:
-                  screenWidth*0.05),
+                  screenWidth*0.1),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -139,6 +205,8 @@ class _settingPageState extends State<setting> {
                       ),
                     ],
                   ),
+                  SizedBox(height:
+                  screenWidth*0.01),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -160,24 +228,13 @@ class _settingPageState extends State<setting> {
                           ),
                           ),
                         ),
-                        onPressed: () {
-
-                        },
+                        onPressed: () => _showType(),
                         child: Text('Change type'),
                       ),
                     ],
                   ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    margin:EdgeInsets.fromLTRB(screenWidth*0.1, screenHeight*0.03, 0, 0),
-                    child: Text('Name',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'NanumPenScript',
-                        fontSize: 40,
-                      ),
-                    ),
-                  ),
+                  SizedBox(height:
+                  screenWidth*0.1),
                   Container(
                     alignment: Alignment.topLeft,
                     margin:EdgeInsets.fromLTRB(0, screenHeight*0.03, 0, 0),
@@ -189,17 +246,9 @@ class _settingPageState extends State<setting> {
                       ),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    margin:EdgeInsets.fromLTRB(screenWidth*0.1, screenHeight*0.03, 0, 0),
-                    child: Text('Name',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'NanumPenScript',
-                        fontSize: 40,
-                      ),
-                    ),
-                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                   Container(
                     alignment: Alignment.topLeft,
                     margin:EdgeInsets.fromLTRB(screenWidth*0.1, screenHeight*0.03, 0, 0),
@@ -208,12 +257,32 @@ class _settingPageState extends State<setting> {
                         fontWeight: FontWeight.bold,
                         fontFamily: 'NanumPenScript',
                         fontSize: 40,
+                          ),
+                        ),
                       ),
-                    ),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:MaterialStateProperty.all(Color(0xFF006C6C)),
+                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => WeatherTest()),
+                          );
+                        },
+                        child: Text('Choose Location'),
+                      ),
+                    ],
                   ),
                   Container(
                     margin: EdgeInsets.only(bottom: 20),
                   ),
+                  SizedBox(height:
+                  screenWidth*0.1),
                   TextButton(
                     onPressed: (){
                       Navigator.push(
@@ -233,7 +302,7 @@ class _settingPageState extends State<setting> {
                           fontStyle: FontStyle.normal,
                         )
                     ),
-                    child: Text('confirm'),
+                    child: Text('Confirm'),
                   ),
                 ],
               ),

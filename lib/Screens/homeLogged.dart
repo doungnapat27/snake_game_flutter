@@ -106,7 +106,7 @@ class HomeLogged extends StatelessWidget {
                           Navigator.push(
                             context,
                             //MaterialPageRoute(builder: (context) => WeatherTest()),
-                            MaterialPageRoute(builder: (context) => setting()),
+                              MaterialPageRoute(builder: (context) => setting()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
