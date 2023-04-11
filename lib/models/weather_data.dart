@@ -5,6 +5,8 @@ class WeatherData {
   final String main;
   final String icon;
 
+  static double currentTemp = 10.0;
+
   WeatherData({
     this.date,
     this.name,
@@ -14,6 +16,8 @@ class WeatherData {
   });
 
   factory WeatherData.fromJson(Map<String, dynamic> json) {
+    updateTemp(json['main']['temp'].toDouble());
+
     return WeatherData(
       date: DateTime.fromMillisecondsSinceEpoch(
         json['dt'] * 1000,
@@ -24,5 +28,9 @@ class WeatherData {
       main: json['weather'][0]['main'],
       icon: json['weather'][0]['icon'],
     );
+  }
+
+  static void updateTemp(double newTemp) {
+    currentTemp = newTemp;
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -7,12 +6,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter_snake_game/widgets/Weather.dart';
 import 'package:location/location.dart';
 
-class WeatherTest extends StatefulWidget{
+class WeatherTest extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => WeatherState();
 }
 
-class WeatherState extends State<WeatherTest>{
+class WeatherState extends State<WeatherTest> {
   bool isLoading = false;
   WeatherData weatherData;
   Location location = Location();
@@ -63,7 +62,7 @@ class WeatherState extends State<WeatherTest>{
         error = 'Permission denied';
       } else if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
         error =
-        'Permission denied - please ask the user to enable it from the app settings';
+            'Permission denied - please ask the user to enable it from the app settings';
       }
 
       _locationData = null;
@@ -84,13 +83,13 @@ class WeatherState extends State<WeatherTest>{
   }
 
   Future<void> _fetchAndSetWeatherData(
-      String apiKey,
-      double lat,
-      double lon,
-      ) async {
+    String apiKey,
+    double lat,
+    double lon,
+  ) async {
     print('2');
     final weatherResponse = await dio.get(
-      'https://api.openweathermap.org/data/2.5/weather?appid=$apiKey&lat=${lat.toString()}&lon=${lon.toString()}',
+      'https://api.openweathermap.org/data/2.5/weather?appid=$apiKey&lat=${lat.toString()}&lon=${lon.toString()}&units=metric',
     );
     if (weatherResponse.statusCode == 200) {
       return setState(() {
@@ -104,33 +103,46 @@ class WeatherState extends State<WeatherTest>{
   //Start Here!!!!
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Weather App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.blueGrey,
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: weatherData != null
-                          ? Weather(weather: weatherData)
-                          : Container(child: Text('Nothing to see here'),), // Empty container
-                    ),
-                  ],
-                ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: weatherData != null
+                        ? Weather(weather: weatherData)
+                        : Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircularProgressIndicator(
+                                strokeWidth: 3.0,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color(0xFF006C6C),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                'Loading weather information...',
+                                style: TextStyle(
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF006C6C),
+                                  fontFamily: 'NanumPenScript',
+                                ),
+                              ),
+                            ],
+                          ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

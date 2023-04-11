@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_snake_game/Screens/homeLogged.dart';
 import 'package:flutter_snake_game/Screens/setting.dart';
 import 'package:flutter_snake_game/direction_type.dart';
+import 'package:flutter_snake_game/models/weather_data.dart';
 
 import 'control_panel.dart';
 import 'direction.dart';
@@ -83,24 +84,38 @@ class _GamePageState extends State<GamePage> {
   Offset getRandomPositionWithinRange() {
     int posX = Random().nextInt(upperBoundX) + lowerBoundX;
     int posY = Random().nextInt(upperBoundY) + lowerBoundY;
-    return Offset(roundToNearestTens(posX).toDouble(), roundToNearestTens(posY).toDouble());
+    return Offset(roundToNearestTens(posX).toDouble(),
+        roundToNearestTens(posY).toDouble());
   }
 
   bool detectCollision(Offset position) {
     // TODO
-    if (position.dx >= upperBoundX && direction == Direction.right) {
-      return true;
-    } else if (position.dx <= lowerBoundX && direction == Direction.left) {
-      return true;
-    } else if (position.dy >= upperBoundY && direction == Direction.down) {
-      return true;
-    } else if (position.dy <= lowerBoundY && direction == Direction.up) {
-      return true;
+    if (setting.pieceType == 'direction') {
+      if (position.dx >= upperBoundX && direction == Direction.left) {
+        return true;
+      } else if (position.dx <= lowerBoundX && direction == Direction.right) {
+        return true;
+      } else if (position.dy >= upperBoundY && direction == Direction.up) {
+        return true;
+      } else if (position.dy <= lowerBoundY && direction == Direction.down) {
+        return true;
+      }
+
+      return false;
+    } else {
+      if (position.dx >= upperBoundX && direction == Direction.right) {
+        return true;
+      } else if (position.dx <= lowerBoundX && direction == Direction.left) {
+        return true;
+      } else if (position.dy >= upperBoundY && direction == Direction.down) {
+        return true;
+      } else if (position.dy <= lowerBoundY && direction == Direction.up) {
+        return true;
+      }
+
+      return false;
     }
-
-    return false;
   }
-
 
   void showGameOverDialog() {
     showDialog(
@@ -109,15 +124,10 @@ class _GamePageState extends State<GamePage> {
       builder: (ctx) {
         return AlertDialog(
           backgroundColor: Colors.transparent,
-          // shape: RoundedRectangleBorder(
-          //     side: BorderSide(
-          //       color: Colors.black,
-          //       width: 3.0,
-          //     // ), borderRadius: BorderRadius.all(Radius.circular(10.0)
-          //    )),
           title: Text(
             "Game Over",
-            style: TextStyle(color: Colors.white,
+            style: TextStyle(
+              color: Colors.white,
               fontSize: 36,
               fontWeight: FontWeight.bold,
             ),
@@ -125,58 +135,62 @@ class _GamePageState extends State<GamePage> {
           ),
           content: Text(
             "${score.toString()}",
-            style: TextStyle(color: Colors.white,
+            style: TextStyle(
+              color: Colors.white,
               fontSize: 24,
             ),
             textAlign: TextAlign.center,
           ),
           actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  TextButton(
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.home,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                TextButton(
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.home,
+                        color: Colors.white,
+                        size: 50,
+                      ),
+                      Text(
+                        'Home',
+                        style: TextStyle(
                           color: Colors.white,
-                          size: 50,
                         ),
-                        Text('Home',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-        ),
-                    onPressed: () async {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeLogged()),
-                      );
-                    },
+                      )
+                    ],
                   ),
-                  TextButton(
-                    child: Column(
-                      children: <Widget>[
-                        Icon(Icons.refresh,
+                  onPressed: () async {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeLogged()),
+                    );
+                  },
+                ),
+                TextButton(
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.refresh,
+                        color: Colors.white,
+                        size: 50,
+                      ),
+                      Text(
+                        'Restart',
+                        style: TextStyle(
                           color: Colors.white,
-                          size: 50,
                         ),
-                        Text('Restart',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-
-        ),
-                    onPressed: () async {
-                      Navigator.of(context).pop();
-                      restart();
-                    },
+                      )
+                    ],
                   ),
-                ],
-              ),
+                  onPressed: () async {
+                    Navigator.of(context).pop();
+                    restart();
+                  },
+                ),
+              ],
+            ),
           ],
         );
       },
@@ -186,26 +200,44 @@ class _GamePageState extends State<GamePage> {
   Future<Offset> getNextPosition(Offset position) async {
     // TODO
     Offset nextPosition;
+    if (setting.pieceType == 'direction') {
+      if (detectCollision(position) == true) {
+        if (timer != null && timer.isActive) timer.cancel();
+        await Future.delayed(
+            Duration(milliseconds: 500), () => showGameOverDialog());
+        return position;
+      }
+      if (direction == Direction.right) {
+        nextPosition = Offset(position.dx - step, position.dy);
+      } else if (direction == Direction.left) {
+        nextPosition = Offset(position.dx + step, position.dy);
+      } else if (direction == Direction.up) {
+        nextPosition = Offset(position.dx, position.dy + step);
+      } else if (direction == Direction.down) {
+        nextPosition = Offset(position.dx, position.dy - step);
+      }
 
-    if (detectCollision(position) == true) {
-      if (timer != null && timer.isActive) timer.cancel();
-      await Future.delayed(
-          Duration(milliseconds: 500), () => showGameOverDialog());
-      return position;
-    }
-    if (direction == Direction.right) {
-      nextPosition = Offset(position.dx + step, position.dy);
-    } else if (direction == Direction.left) {
-      nextPosition = Offset(position.dx - step, position.dy);
-    } else if (direction == Direction.up) {
-      nextPosition = Offset(position.dx, position.dy - step);
-    } else if (direction == Direction.down) {
-      nextPosition = Offset(position.dx, position.dy + step);
-    }
+      return nextPosition;
+    } else {
+      if (detectCollision(position) == true) {
+        if (timer != null && timer.isActive) timer.cancel();
+        await Future.delayed(
+            Duration(milliseconds: 500), () => showGameOverDialog());
+        return position;
+      }
+      if (direction == Direction.right) {
+        nextPosition = Offset(position.dx + step, position.dy);
+      } else if (direction == Direction.left) {
+        nextPosition = Offset(position.dx - step, position.dy);
+      } else if (direction == Direction.up) {
+        nextPosition = Offset(position.dx, position.dy - step);
+      } else if (direction == Direction.down) {
+        nextPosition = Offset(position.dx, position.dy + step);
+      }
 
-    return nextPosition;
+      return nextPosition;
+    }
   }
-
 
   void drawFood() {
     // TODO
@@ -215,7 +247,14 @@ class _GamePageState extends State<GamePage> {
     }
     if (foodPosition == positions[0]) {
       length++;
-      speed = speed + 0.05;
+      if (WeatherData.currentTemp >= 30.00) {
+        speed = speed + 0.5;
+      } else if (WeatherData.currentTemp < 30.00 &&
+          WeatherData.currentTemp >= 15.00) {
+        speed = speed + 0.08;
+      } else {
+        speed = speed + 0.05;
+      }
       score = score + 5;
       changeSpeed();
 
@@ -231,7 +270,6 @@ class _GamePageState extends State<GamePage> {
       isAnimated: true,
     );
   }
-
 
   List<Piece> getPieces() {
     // TODO
@@ -255,28 +293,48 @@ class _GamePageState extends State<GamePage> {
        */
       //store the positions of all the pieces that make up the snake in a List
       //called pieces.
-      pieces.add(
-        Piece(
-          posX: positions[i].dx.toInt(),
-          posY: positions[i].dy.toInt(),
-          /* 4. Along with the position, you also pass size and color to Piece.
+      //If the snake type choose is cheese
+      if (setting.pieceType == 'cheese' && i % 2 == 0) {
+        pieces.add(
+          Piece(
+            posX: positions[i].dx.toInt(),
+            posY: positions[i].dy.toInt(),
+            /* 4. Along with the position, you also pass size and color to Piece.
           The size is step, in this case, which ensures that the Snake moves along a grid where each grid cell has the size step.
           The color value is a personal preference.
            */
-          size: step,
-          //can change color here
-          color: setting.pieceColor,
-        ),
-      );
+            size: step,
+            //can change color here
+            color: Colors.white10,
+          ),
+        );
+      }
+
+      //If the snake type is not cheese
+      else {
+        pieces.add(
+          Piece(
+            posX: positions[i].dx.toInt(),
+            posY: positions[i].dy.toInt(),
+            size: step,
+            //can change color here
+            color: setting.pieceColor,
+          ),
+        );
+      }
+      ;
     }
 
     return pieces;
   }
 
   Widget getControls() {
-    return ControlPanel( // 1  ControlPanel widget renders 4 buttons that you will use to control the snake’s movements.
-      onTapped: (Direction newDirection) { // 2 onTapped method which recieves the new direction for the snake to move in as an argument.
-        direction = newDirection; // 3 update the direction variable with the new direction newDirection. This will cause the snake to change direction.
+    return ControlPanel(
+      // 1  ControlPanel widget renders 4 buttons that you will use to control the snake’s movements.
+      onTapped: (Direction newDirection) {
+        // 2 onTapped method which recieves the new direction for the snake to move in as an argument.
+        direction =
+            newDirection; // 3 update the direction variable with the new direction newDirection. This will cause the snake to change direction.
       },
     );
   }
@@ -310,7 +368,6 @@ class _GamePageState extends State<GamePage> {
     );
   }
 
-
   void restart() {
     // TODO
     score = 0;
@@ -321,7 +378,6 @@ class _GamePageState extends State<GamePage> {
 
     changeSpeed();
   }
-
 
   Widget getPlayAreaBorder() {
     return Positioned(

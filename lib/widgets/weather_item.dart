@@ -28,7 +28,7 @@ class WeatherItem extends StatelessWidget {
               style: TextStyle(color: Colors.black, fontSize: 24.0),
             ),
             Text(
-              '${weather.temp.toString()}°F',
+              '${weather.temp.toString()}°C',
               style: TextStyle(color: Colors.black),
             ),
             Image.network(

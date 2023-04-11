@@ -237,7 +237,7 @@ class _SignUpPageState extends State<SignUpPage>{
                                 MaterialPageRoute(builder: (context) => LoginPage()),
                               );
                             },
-                              child: new Text('Already have an account? Sign In',
+                              child: new Text('CherryToast have an account? Sign In',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontFamily: 'NanumPenScript',

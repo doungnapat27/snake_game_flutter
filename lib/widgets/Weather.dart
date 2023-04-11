@@ -11,35 +11,71 @@ class Weather extends StatelessWidget {
     this.color,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          weather.name,
-          style: TextStyle(color: Colors.white),
+    Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      elevation: 10,
+      color: Color(0xFF006C6C),
+      margin: EdgeInsets.all(16),
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              weather.name.toUpperCase(),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              weather.main.toUpperCase(),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              '${weather.temp.toStringAsFixed(1)}°C',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+            Image.network(
+              'https://openweathermap.org/img/w/${weather.icon}.png',
+              width: 60,
+              height: 60,
+            ),
+            SizedBox(height: 10),
+            Text(
+              DateFormat.yMMMd().format(weather.date),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              DateFormat.Hm().format(weather.date),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-        Text(
-          weather.main,
-          style: TextStyle(color: Colors.white, fontSize: 32.0),
-        ),
-        Text(
-          '${weather.temp.toString()}°F',
-          style: TextStyle(color: Colors.white),
-        ),
-        Image.network(
-          'https://openweathermap.org/img/w/${weather.icon}.png',
-        ),
-        Text(
-          DateFormat.yMMMd().format(weather.date),
-          style: TextStyle(color: Colors.white),
-        ),
-        Text(
-          DateFormat.Hm().format(weather.date),
-          style: TextStyle(color: Colors.white),
-        ),
-      ],
+      ),
     );
   }
 }
