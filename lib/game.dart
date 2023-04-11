@@ -248,7 +248,7 @@ class _GamePageState extends State<GamePage> {
     if (foodPosition == positions[0]) {
       length++;
       if (WeatherData.currentTemp >= 30.00) {
-        speed = speed + 0.5;
+        speed = speed + 0.1;
       } else if (WeatherData.currentTemp < 30.00 &&
           WeatherData.currentTemp >= 15.00) {
         speed = speed + 0.08;
