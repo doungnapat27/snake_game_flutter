@@ -44,8 +44,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: Color(0xFFD9D9D9),
-                    onPrimary: Colors.black,
+                    backgroundColor: Color(0xFFD9D9D9),
+                    foregroundColor: Colors.black,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(46))),
                     textStyle: const TextStyle(
                       fontSize: 40,

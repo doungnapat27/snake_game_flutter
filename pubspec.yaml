@@ -26,12 +26,12 @@ dependencies:
   form_field_validator: ^1.1.0
   firebase_core: ^2.6.1
   firebase_auth : ^4.2.8
-  fluttertoast: ^8.2.0
   cherry_toast: ^1.0.9
   flutter_dotenv: ^5.0.2
   dio: ^5.0.1
   location: ^4.2.0
   flutter_colorpicker: ^1.0.3
+  shared_preferences: ^2.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -41,6 +41,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.13.0"
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/play_store_512.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

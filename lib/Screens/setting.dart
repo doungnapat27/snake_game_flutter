@@ -28,7 +28,6 @@ class _settingPageState extends State<setting> {
     setState(() => setting.pieceType = type);
   }
 
-
   void _showColorPicker() {
     showDialog(
       context: context,
@@ -131,185 +130,189 @@ class _settingPageState extends State<setting> {
     return Scaffold(
       backgroundColor: Color(0xFF006C6C),
       body: Stack(
-        children: <Widget> [
-          Positioned(
-            top: screenHeight*0.10,
-            left: screenWidth*0.1,
-            child : Image(
-              image: AssetImage(
-                  'assets/images/Logo2 white.png'),
-              width: screenWidth*0.8,
-            ),
-          ),
-          Align(
-            alignment: AlignmentDirectional.bottomEnd,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft:Radius.circular(57)
-                ),
+          children: <Widget> [
+            Positioned(
+              top: screenHeight*0.10,
+              left: screenWidth*0.1,
+              child : Image(
+                image: AssetImage(
+                    'assets/images/Logo2 white.png'),
+                width: screenWidth*0.8,
               ),
-              width: screenWidth,
-              height: screenHeight*0.78,
-              padding: EdgeInsets.all(15),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: Text('🐍 Setting',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'NanumPenScript',
-                        fontSize: 55,
-                      ),
-                    ),
+            ),
+            Align(
+              alignment: AlignmentDirectional.bottomEnd,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft:Radius.circular(57)
                   ),
-                  SizedBox(height:
-                  screenWidth*0.1),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: Text('Snake',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'NanumPenScript',
-                        fontSize: 45,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height:
-                  screenWidth*0.1),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                ),
+                width: screenWidth,
+                height: screenHeight*0.78,
+                padding: EdgeInsets.all(15),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
                       Container(
-                        margin:EdgeInsets.fromLTRB(screenWidth*0.1,0, 0, 0),
-                      child:Text('Color',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'NanumPenScript',
-                          fontSize: 40,
-                          ),
-                        ),
-                      ),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:MaterialStateProperty.all(_buttonColor),
-                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          ),
-                        ),
-                        onPressed: () => _showColorPicker(),
-                        child: Text('Change Color'),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height:
-                  screenWidth*0.01),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        margin:EdgeInsets.fromLTRB(screenWidth*0.1,screenHeight*0.03, 0, 0),
-                        child:Text('Type',
+                        alignment: Alignment.topLeft,
+                        child: Text('🐍 Setting',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontFamily: 'NanumPenScript',
-                            fontSize: 40,
+                            fontSize: 55,
                           ),
                         ),
                       ),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:MaterialStateProperty.all(Color(0xFF006C6C)),
-                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          ),
-                        ),
-                        onPressed: () => _showType(),
-                        child: Text('Change type'),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height:
-                  screenWidth*0.1),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    margin:EdgeInsets.fromLTRB(0, screenHeight*0.03, 0, 0),
-                    child: Text('Game',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'NanumPenScript',
-                        fontSize: 45,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                  Container(
-                    alignment: Alignment.topLeft,
-                    margin:EdgeInsets.fromLTRB(screenWidth*0.1, screenHeight*0.03, 0, 0),
-                    child: Text('Location',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'NanumPenScript',
-                        fontSize: 40,
+                      SizedBox(height:
+                      screenWidth*0.1),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        child: Text('Snake',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NanumPenScript',
+                            fontSize: 45,
                           ),
                         ),
                       ),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor:MaterialStateProperty.all(Color(0xFF006C6C)),
-                          shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                      SizedBox(height:
+                      screenWidth*0.1),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            margin:EdgeInsets.fromLTRB(screenWidth*0.1,0, 0, 0),
+                            child:Text('Color',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'NanumPenScript',
+                                fontSize: 40,
+                              ),
+                            ),
                           ),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:MaterialStateProperty.all(_buttonColor),
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              ),
+                            ),
+                            onPressed: () => _showColorPicker(),
+                            child: Text('Change Color'),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height:
+                      screenWidth*0.01),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            margin:EdgeInsets.fromLTRB(screenWidth*0.1,screenHeight*0.03, 0, 0),
+                            child:Text('Type',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'NanumPenScript',
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:MaterialStateProperty.all(Color(0xFF006C6C)),
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              ),
+                            ),
+                            onPressed: () => _showType(),
+                            child: Text('Change type'),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height:
+                      screenWidth*0.1),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        margin:EdgeInsets.fromLTRB(0, screenHeight*0.03, 0, 0),
+                        child: Text('Game',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NanumPenScript',
+                            fontSize: 45,
                           ),
                         ),
-                        onPressed: () {
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            alignment: Alignment.topLeft,
+                            margin:EdgeInsets.fromLTRB(screenWidth*0.1, screenHeight*0.03, 0, 0),
+                            child: Text('Location',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'NanumPenScript',
+                                fontSize: 40,
+                              ),
+                            ),
+                          ),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:MaterialStateProperty.all(Color(0xFF006C6C)),
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => WeatherTest()),
+                              );
+                            },
+                            child: Text('Choose Location'),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 20),
+                      ),
+                      SizedBox(height: screenWidth*0.1),
+                      TextButton(
+                        onPressed: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => WeatherTest()),
+                            MaterialPageRoute(builder: (context) => HomeLogged()),
                           );
                         },
-                        child: Text('Choose Location'),
+                        style: TextButton.styleFrom(
+                            padding: EdgeInsets.only(left: 60, right:60),
+                            foregroundColor: Colors.white,
+                            backgroundColor: Color(0xFF006C6C),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(46))),
+                            textStyle: const TextStyle(
+                              fontSize: 45,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'NanumPenScript',
+                              fontStyle: FontStyle.normal,
+                            )
+                        ),
+                        child: Text('Confirm'),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 20),
                       ),
                     ],
                   ),
-                  Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                  ),
-                  SizedBox(height:
-                  screenWidth*0.1),
-                  TextButton(
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeLogged()),
-                      );
-                    },
-                    style: TextButton.styleFrom(
-                        padding: EdgeInsets.only(left: 60, right:60),
-                        primary: Colors.white,
-                        backgroundColor: Color(0xFF006C6C),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(46))),
-                        textStyle: const TextStyle(
-                          fontSize: 45,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'NanumPenScript',
-                          fontStyle: FontStyle.normal,
-                        )
-                    ),
-                    child: Text('Confirm'),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+      )
     );
   }
 

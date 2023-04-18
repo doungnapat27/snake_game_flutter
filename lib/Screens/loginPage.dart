@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_game/Screens/homeLogged.dart';
+import 'package:flutter_snake_game/Screens/snakeName.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 import '../models/profile.dart';
@@ -107,6 +108,7 @@ class _LoginPageState extends State<LoginPage>{
                                           keyboardType: TextInputType.emailAddress,
                                           onSaved: (String email){
                                             profile.email = email;
+                                            profile.setEmail(email);
                                           },
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(
@@ -172,7 +174,8 @@ class _LoginPageState extends State<LoginPage>{
                                                   Future.delayed(Duration(milliseconds: 2500),(){
                                                     Navigator.pushReplacement(
                                                       context,
-                                                      MaterialPageRoute(builder: (context) => HomeLogged()),
+                                                      // MaterialPageRoute(builder: (context) => HomeLogged()),
+                                                      MaterialPageRoute(builder: (context) => SnakeName()),
                                                     );
                                                   });
                                                 });
