@@ -17,19 +17,6 @@ Future main() async{
   // Navigate to the appropriate screen
   // Widget initialScreen;
   Widget initialScreen = isFirstLaunch ? HomePage() : LoginPage();
-  //profile.getEmail() == null ? LoginPage() : HomeLogged()
-  // if(isFirstLaunch == false){
-  //   initialScreen = HomePage();
-  // }
-  // else{
-  //   if(profile.getEmail() != null){
-  //     initialScreen = HomeLogged();
-  //   }
-  //   else{
-  //     initialScreen = LoginPage();
-  //   }
-  // }
-  // runApp(MyApp());
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Flutter Snake',

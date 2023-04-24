@@ -3,6 +3,7 @@ import 'package:cherry_toast/resources/arrays.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_snake_game/Screens/home.dart';
 import 'package:flutter_snake_game/Screens/homeLogged.dart';
 import 'package:flutter_snake_game/Screens/loginPage.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -46,7 +47,10 @@ class _SignUpPageState extends State<SignUpPage>{
                   top: screenHeight*0.05,
                   child : IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
                     },
                     icon: Icon(Icons.arrow_back,size: 46,
                     ),

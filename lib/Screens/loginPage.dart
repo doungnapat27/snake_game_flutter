@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_game/Screens/homeLogged.dart';
+import 'package:flutter_snake_game/Screens/signUp.dart';
 import 'package:flutter_snake_game/Screens/snakeName.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
@@ -47,7 +48,11 @@ class _LoginPageState extends State<LoginPage>{
                           top: screenHeight*0.05,
                           child : IconButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              Navigator.pushReplacement(
+                                context,
+                                // MaterialPageRoute(builder: (context) => HomeLogged()),
+                                MaterialPageRoute(builder: (context) => SignUpPage()),
+                              );
                             },
                             icon: Icon(Icons.arrow_back,size: 46,
                             ),
@@ -202,6 +207,25 @@ class _LoginPageState extends State<LoginPage>{
                                               )
                                           ),
                                           child: Text('Next'),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(top: 20),
+                                        child: new InkWell(
+                                          //wait to insert the login page
+                                          onTap: (){
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(builder: (context) => SignUpPage()),
+                                            );
+                                          },
+                                          child: new Text('Do not have an account? Sign Up',
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontFamily: 'NanumPenScript',
+                                              color: Colors.black,
+                                            ),
+                                          ),
                                         ),
                                       )
                                     ],
